@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Rainbow Quotes for Moots 🌈✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --r1: #ffdbe6;
+            --r2: #ffe8d6;
+            --r3: #fff9d6;
+            --r4: #dcfce7;
+            --r5: #dbeafe;
+            --r6: #f3e8ff;
+            --ink: #38304c;
+            --ink-soft: #685f80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--r1), var(--r2), var(--r3), var(--r4), var(--r5), var(--r6));
+            background-size: 400% 400%;
+            animation: pastelFlow 15s ease infinite;
+            color: var(--ink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes pastelFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Geometric Pastel Shapes */
+        .ambient-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape-float {
+            position: absolute;
+            opacity: 0.65;
+            animation: driftSpin linear infinite;
+        }
+
+        @keyframes driftSpin {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(0.85);
+                opacity: 0;
+            }
+            15% { opacity: 0.75; }
+            85% { opacity: 0.75; }
+            100% {
+                transform: translateY(-15vh) rotate(360deg) scale(1.15);
+                opacity: 0;
+            }
+        }
+
+        /* Main Glassmorphic Frame */
+        .quote-deck {
+            position: relative;
+            z-index: 5;
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 36px;
+            padding: 26px 24px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 24px 60px rgba(124, 108, 163, 0.16);
+        }
+
+        /* Top Rainbow Arc Indicator */
+        .dot-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(145, 132, 178, 0.25);
+            cursor: pointer;
+            transition: all 0.35s ease;
+        }
+
+        .dot.active {
+            width: 28px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #ff9ebb, #ffd18c, #8ce6b8, #8ec5ff, #c9a6ff);
+        }
+
+        /* Slide Stage */
+        .stage {
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: softZoomBlur 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes softZoomBlur {
+            0% {
+                opacity: 0;
+                filter: blur(8px);
+                transform: scale(0.92) translateY(14px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .floating-icon {
+            font-size: 46px;
+            display: inline-block;
+            margin-bottom: 14px;
+            filter: drop-shadow(0 8px 14px rgba(160, 140, 200, 0.25));
+            animation: gentleBob 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleBob {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-9px) rotate(3deg); }
+        }
+
+        .chapter-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b79b5;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        /* Full Quote Typography */
+        .quote-card-inner {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+            border: 1.5px solid #ffffff;
+            border-radius: 26px;
+            padding: 24px 18px;
+            box-shadow: 0 10px 28px rgba(145, 130, 185, 0.08);
+            position: relative;
+        }
+
+        .quote-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 44px;
+            line-height: 0.5;
+            color: #d6b8ff;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 21px;
+            line-height: 1.48;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+
+        .quote-sub {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        /* Slide 5 Unique Interactive Orb (Different from previous buttons) */
+        .orb-wrapper {
+            margin: 14px auto 12px;
+            position: relative;
+            width: 124px;
+            height: 124px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orb-halo {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #ff9ebb, #ffd18c, #99ebc0, #99caff, #cfa8ff, #ff9ebb);
+            animation: spinOrb 5s linear infinite;
+            filter: blur(6px);
+            opacity: 0.85;
+        }
+
+        @keyframes spinOrb {
+            to { transform: rotate(360deg); }
+        }
+
+        .crystal-orb {
+            position: relative;
+            z-index: 2;
+            width: 106px;
+            height: 106px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            background: radial-gradient(circle at 32% 28%, #ffffff 0%, #f5ecff 45%, #ffe6f2 100%);
+            box-shadow: inset 0 -8px 18px rgba(186, 152, 232, 0.35), 0 10px 25px rgba(154, 130, 204, 0.3);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+        }
+
+        .crystal-orb:hover {
+            transform: scale(1.07);
+        }
+
+        .crystal-orb:active {
+            transform: scale(0.92);
+        }
+
+        .crystal-orb span.orb-emoji {
+            font-size: 32px;
+            margin-bottom: 2px;
+        }
+
+        .crystal-orb span.orb-hint {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #7b68a8;
+        }
+
+        /* Ripple Wave on Orb Click */
+        .orb-ripple {
+            position: fixed;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 25px rgba(212, 178, 255, 0.8);
+            pointer-events: none;
+            z-index: 90;
+            animation: expandWave 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes expandWave {
+            0% {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                width: 520px;
+                height: 520px;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        /* Revealed Fortune Quote Card */
+        .fortune-card {
+            display: none;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #ffffff, #faf5ff);
+            border: 2px solid #ffffff;
+            border-radius: 22px;
+            padding: 16px 14px;
+            box-shadow: 0 12px 30px rgba(154, 130, 204, 0.2);
+            animation: cardRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .fortune-card.visible {
+            display: block;
+        }
+
+        @keyframes cardRise {
+            0% { opacity: 0; transform: translateY(16px) scale(0.92); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .fortune-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #9c7ce0;
+            margin-bottom: 6px;
+        }
+
+        .fortune-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 18.5px;
+            color: var(--ink);
+            line-height: 1.4;
+        }
+
+        /* Bottom Arrow Controls */
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 22px;
+        }
+
+        .circle-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid #ffffff;
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--ink);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(140, 120, 180, 0.12);
+            transition: all 0.2s ease;
+        }
+
+        .circle-btn:hover:not(:disabled) {
+            transform: scale(1.08);
+            background: #ffffff;
+        }
+
+        .circle-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .step-caption {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--ink-soft);
+            letter-spacing: 1px;
+        }
+
+        /* Floating Star Particles on Click */
+        .spark-burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 95;
+            animation: sparkFly cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes sparkFly {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(var(--rot));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-layer" id="ambientLayer"></div>
+
+    <div class="quote-deck">
+        <!-- 5 Dots Indicator -->
+        <div class="dot-indicators" id="dotIndicators">
+            <div class="dot active" onclick="setSlide(0)"></div>
+            <div class="dot" onclick="setSlide(1)"></div>
+            <div class="dot" onclick="setSlide(2)"></div>
+            <div class="dot" onclick="setSlide(3)"></div>
+            <div class="dot" onclick="setSlide(4)"></div>
+        </div>
+
+        <div class="stage">
+            <!-- SLIDE 1: Quote 1 -->
+            <div class="slide active">
+                <div class="floating-icon">🌈</div>
+                <span class="chapter-label">Quote 01 · For You</span>
+                <div class="quote-card-inner">
+                    <span class="quote-mark">“</span>
+                    <p class="quote-text">
+                        You don’t have to have everything figured out today. Pelan-pelan aja, you’re blooming at your own pace.
+                    </p>
+                    <p class="quote-sub">
+                        Kalau kamu nemu ini dari SG, tarik napas bentar ya—you’re doing better than you think. ☁️✨
+                    </p>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Quote 2 -->
+            <div class="slide">
+                <div class="floating-icon">🦋</div>
+                <span class="chapter-label">Quote 02 · Gentle Pace</span>
+                <div class="quote-card-inner">
+                    <span class="quote-mark">“</span>
+                    <p class="quote-text">
+                        Rest is not a waste of time; bahkan langit pun butuh mendung sebentar sebelum ngasih warna pelangi paling cantik.
+                    </p>
+                    <p class="quote-sub">
+                        Capek itu wajar banget. Give yourself permission to pause without feeling guilty. 🌿💛
+                    </p>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Quote 3 (Full Quote, bukan list 1 2 3) -->
+            <div class="slide">
+                <div class="floating-icon">🫧</div>
+                <span class="chapter-label">Quote 03 · Self-Worth</span>
+                <div class="quote-card-inner">
+                    <span class="quote-mark">“</span>
+                    <p class="quote-text">
+                        Stop measuring your progress using someone else’s ruler. Your chapter, your timing, your magic.
+                    </p>
+                    <p class="quote-sub">
+                        Nggak perlu buru-buru nyamain langkah orang lain—your time will come beautifully. 🌸💫
+                    </p>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: Quote 4 -->
+            <div class="slide">
+                <div class="floating-icon">🌤️</div>
+                <span class="chapter-label">Quote 04 · Hope</span>
+                <div class="quote-card-inner">
+                    <span class="quote-mark">“</span>
+                    <p class="quote-text">
+                        Even on your heaviest days, remember that you have survived 100% of your hardest moments so far.
+                    </p>
+                    <p class="quote-sub">
+                        Hal-hal baik lagi jalan ke arah kamu. Keep holding on, bestie! 🤍🌷
+                    </p>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: Interactive Crystal Rainbow Orb -->
+            <div class="slide">
+                <span class="chapter-label">Final · Touch The Orb</span>
+                <p class="quote-sub" id="orbPrompt" style="margin-bottom: 6px;">
+                    Sentuh bola kristal pelangi di bawah ini buat ngebuka *secret quote* khusus buat kamu hari ini ✨
+                </p>
+
+                <div class="orb-wrapper">
+                    <div class="orb-halo"></div>
+                    <div class="crystal-orb" id="rainbowOrb" onclick="activateOrb(event)">
+                        <span class="orb-emoji" id="orbEmoji">🔮</span>
+                        <span class="orb-hint" id="orbHint">Tap Orb</span>
+                    </div>
+                </div>
+
+                <div class="fortune-card" id="fortuneCard">
+                    <div class="fortune-tag">✨ Your Secret Quote Today ✨</div>
+                    <p class="fortune-quote" id="fortuneQuote"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimalist Circle Navigation -->
+        <div class="nav-row">
+            <button class="circle-btn" id="prevCircle" onclick="stepSlide(-1)" disabled>←</button>
+            <span class="step-caption" id="stepCaption">01 / 05</span>
+            <button class="circle-btn" id="nextCircle" onclick="stepSlide(1)">→</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Ambient Floating Pastel Shapes
+        const ambientLayer = document.getElementById('ambientLayer');
+        const symbols = ['✦', '✧', '○', '△', '♡', '🌈', '✨'];
+        const colors = ['#ff9ebb', '#ffc88a', '#9ee6c2', '#99caff', '#cfa8ff'];
+
+        for (let i = 0; i < 22; i++) {
+            const el = document.createElement('div');
+            el.className = 'shape-float';
+            el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            el.style.left = `${Math.random() * 96}%`;
+            el.style.fontSize = `${Math.random() * 14 + 12}px`;
+            el.style.color = colors[Math.floor(Math.random() * colors.length)];
+            el.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            el.style.animationDelay = `${Math.random() * -15}s`;
+            ambientLayer.appendChild(el);
+        }
+
+        // 2. Slide Logic
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevCircle = document.getElementById('prevCircle');
+        const nextCircle = document.getElementById('nextCircle');
+        const stepCaption = document.getElementById('stepCaption');
+
+        function syncDeck() {
+            slides.forEach((s, i) => s.classList.toggle('active', i === current));
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+            prevCircle.disabled = current === 0;
+            nextCircle.disabled = current === slides.length - 1;
+            nextCircle.style.visibility = current === slides.length - 1 ? 'hidden' : 'visible';
+            stepCaption.innerText = `0${current + 1} / 0${slides.length}`;
+        }
+
+        function stepSlide(delta) {
+            const next = current + delta;
+            if (next >= 0 && next < slides.length) {
+                current = next;
+                syncDeck();
+            }
+        }
+
+        function setSlide(index) {
+            current = index;
+            syncDeck();
+        }
+
+        // 3. Unique Crystal Orb Interaction on Slide 5
+        const secretQuotes = [
+            "“Good things are quietly lining up for you. Jangan lupa senyum hari ini ya!” 🌈💛",
+            "“You are softer, stronger, and braver than you give yourself credit for.” 🦋✨",
+            "“Semesta lagi nyiapin kejutan manis buat gantiin capekmu akhir-akhir ini.” 🌷💫",
+            "“May your heart feel light, your mind feel calm, and your days glow in pastel.” ☁️🩵",
+            "“Whatever you’re worrying about right now, it’s going to work out. Trust the timing.” 🦄💖"
+        ];
+
+        function activateOrb(e) {
+            const orb = document.getElementById('rainbowOrb');
+            const orbEmoji = document.getElementById('orbEmoji');
+            const orbHint = document.getElementById('orbHint');
+            const orbPrompt = document.getElementById('orbPrompt');
+            const fortuneCard = document.getElementById('fortuneCard');
+            const fortuneQuote = document.getElementById('fortuneQuote');
+
+            // Pick random quote
+            const picked = secretQuotes[Math.floor(Math.random() * secretQuotes.length)];
+            fortuneQuote.innerText = picked;
+
+            // Animate card reveal
+            fortuneCard.classList.remove('visible');
+            void fortuneCard.offsetWidth;
+            fortuneCard.classList.add('visible');
+
+            orbEmoji.innerText = '🌈';
+            orbHint.innerText = 'Tap Again';
+            orbPrompt.innerText = 'Screenshot & share ke SG kalau quote ini relate sama kamu! 🤍';
+
+            // Get orb center coordinates
+            const rect = orb.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            // Create expanding rainbow light wave
+            const wave = document.createElement('div');
+            wave.className = 'orb-ripple';
+            wave.style.left = `${cx}px`;
+            wave.style.top = `${cy}px`;
+            document.body.appendChild(wave);
+            setTimeout(() => wave.remove(), 1150);
+
+            // Burst pastel stars around the orb
+            const burstIcons = ['🌈', '✨', '🌸', '🦋', '💛', '🩵', '💜', '⭐'];
+            for (let i = 0; i < 36; i++) {
+                const sp = document.createElement('div');
+                sp.className = 'spark-burst';
+                sp.innerText = burstIcons[Math.floor(Math.random() * burstIcons.length)];
+                sp.style.left = `${cx}px`;
+                sp.style.top = `${cy}px`;
+                sp.style.fontSize = `${Math.random() * 14 + 13}px`;
+
+                const angle = (Math.PI * 2 * i) / 36 + (Math.random() * 0.3);
+                const dist = Math.random() * 210 + 70;
+                sp.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+                sp.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+                sp.style.setProperty('--rot', `${(Math.random() - 0.5) * 480}deg`);
+                sp.style.animationDuration = `${Math.random() * 0.7 + 0.9}s`;
+
+                document.body.appendChild(sp);
+                setTimeout(() => sp.remove(), 1700);
+            }
+        }
+    </script>
+</body>
+</html>
